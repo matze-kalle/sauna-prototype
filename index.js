@@ -5,13 +5,13 @@ const watch = path.resolve('./api/');
 const watcher = chokidar.watch(watch);
 const server = express();
 
-server.get('/', (req, res, next) => {
+server.get('/', (req, res) => {
   res.send('Sauna Prototype');
 });
 
 server.use((req, res, next) => {
   require('./api/about.js')(req, res, next);
-})
+});
 
 watcher.on('ready', () => {
   watcher.on('all', (event, path) => {
