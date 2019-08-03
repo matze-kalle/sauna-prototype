@@ -4,7 +4,8 @@
   "description": "Prototype for server-side hot reloading.",
   "main": "./index.js",
   "scripts": {
-    "start": "node ./index.js"
+    "start": "node ./index.js",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
