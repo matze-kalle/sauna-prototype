@@ -1,8 +1,4 @@
-const { Router } = require('express');
-const router = new Router();
-
-router.get('/ipsum', (req, res) => {
+module.exports = (req, res) => {
   res.send('Ipsum.');
-});
+};
 
-module.exports = router;

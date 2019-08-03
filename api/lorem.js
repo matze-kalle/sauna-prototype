@@ -1,8 +1,3 @@
-const { Router } = require('express');
-const router = new Router();
-
-router.get('/lorem', (req, res) => {
+module.exports = (req, res) => {
   res.send('Lorem.');
-});
-
-module.exports = router;
+};
