@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/matze-kalle/sauna-prototype/issues"
   },
-  "homepage": "https://github.com/matze-kalle/sauna-prototype#readme"
+  "homepage": "https://github.com/matze-kalle/sauna-prototype#readme",
+  "dependencies": {
+    "chokidar": "^3.0.2",
+    "express": "^4.17.1"
+  }
 }
