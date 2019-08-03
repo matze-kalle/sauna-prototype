@@ -11,6 +11,8 @@ server.get('/', (req, res) => {
 
 server.use((req, res, next) => {
   require('./api/about.js')(req, res, next);
+  require('./api/lorem.js')(req, res, next);
+  require('./api/ipsum.js')(req, res, next);
 });
 
 watcher.on('ready', () => {
