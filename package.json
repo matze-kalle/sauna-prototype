@@ -1,0 +1,19 @@
+{
+  "name": "sauna-prototype",
+  "version": "0.0.0",
+  "description": "Prototype for server-side hot reloading.",
+  "main": "./index.js",
+  "scripts": {
+    "start": "node ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matze-kalle/sauna-prototype.git"
+  },
+  "author": "Luca Feigl",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matze-kalle/sauna-prototype/issues"
+  },
+  "homepage": "https://github.com/matze-kalle/sauna-prototype#readme"
+}
