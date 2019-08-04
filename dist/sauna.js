@@ -1,13 +1,16 @@
 const nodePath = require('path');
 const chokidar = require('chokidar');
-const watch = nodePath.resolve('./api/');
-const watcher = chokidar.watch(watch);
 
-module.exports = () => {
+module.exports = (watchPath) => {
+  const resolvedWatchPath = nodePath.resolve(watchPath);
+  const relativeWatchPath = nodePath.relative(process.cwd(), resolvedWatchPath);
+  const watcher = chokidar.watch(resolvedWatchPath);
+
   watcher.on('ready', () => {
-    console.log('Hot reloading is now active.');
+    console.log(`Hot reloading is now active for: ${relativeWatchPath}`);
     watcher.on('all', (event, path) => {
       const relativePath = nodePath.relative(process.cwd(), path);
+
       console.log(`Reloading because of: ${relativePath} (${event})`);
       Object.keys(require.cache).forEach((id) => {
         if (/[/\\]api[/\\]/.test(id)) {
