@@ -4,6 +4,10 @@ const lorem = require('./lorem.js');
 const ipsum = require('./ipsum.js');
 const router = new Router();
 
+router.get('/', (req, res) => {
+  res.send('Sauna Prototype');
+});
+
 router.get('/about', about);
 router.get('/lorem', lorem);
 router.get('/ipsum', ipsum);

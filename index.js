@@ -2,10 +2,6 @@ const express = require('express');
 const sauna = require('./dist/sauna.js');
 const server = express();
 
-server.get('/', (req, res) => {
-  res.send('Sauna Prototype');
-});
-
 server.use((req, res, next) => {
   require('./api/index.js')(req, res, next);
 });
