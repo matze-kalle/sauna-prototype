@@ -1,11 +1,18 @@
 const nodePath = require('path');
 const chokidar = require('chokidar');
 
-module.exports = (watchPath) => {
+module.exports = (expressApp, watchPath, requires) => {
   const resolvedWatchPath = nodePath.resolve(watchPath);
   const relativeWatchPath = nodePath.relative(process.cwd(), resolvedWatchPath);
   const watchPathRegExp = new RegExp(`[/\\\\]${relativeWatchPath}[/\\\\]`);
   const watcher = chokidar.watch(resolvedWatchPath);
+
+  expressApp.use((req, res, next) => {
+    requires.forEach((file) => {
+      const filePath = nodePath.resolve(watchPath, file);
+      require(filePath)(req, res, next);
+    });
+  });
 
   watcher.on('ready', () => {
     console.log(`Hot reloading is now active for: ${relativeWatchPath}`);
