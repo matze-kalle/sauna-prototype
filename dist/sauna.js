@@ -12,6 +12,8 @@ module.exports = (expressApp, watchPath, requires) => {
       const filePath = nodePath.resolve(watchPath, file);
       require(filePath)(req, res, next);
     });
+
+    next();
   });
 
   watcher.on('ready', () => {
