@@ -4,6 +4,7 @@ const chokidar = require('chokidar');
 module.exports = (watchPath) => {
   const resolvedWatchPath = nodePath.resolve(watchPath);
   const relativeWatchPath = nodePath.relative(process.cwd(), resolvedWatchPath);
+  const watchPathRegExp = new RegExp(`[/\\\\]${relativeWatchPath}[/\\\\]`);
   const watcher = chokidar.watch(resolvedWatchPath);
 
   watcher.on('ready', () => {
@@ -13,7 +14,7 @@ module.exports = (watchPath) => {
 
       console.log(`Reloading because of: ${relativePath} (${event})`);
       Object.keys(require.cache).forEach((id) => {
-        if (/[/\\]api[/\\]/.test(id)) {
+        if (watchPathRegExp.test(id)) {
           delete require.cache[id];
         }
       });
