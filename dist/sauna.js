@@ -7,13 +7,13 @@ module.exports = (expressApp, watchPath, requires) => {
   const watchPathRegExp = new RegExp(`[/\\\\]${relativeWatchPath}[/\\\\]`);
   const watcher = chokidar.watch(resolvedWatchPath);
 
-  expressApp.use((req, res, next) => {
-    requires.forEach((file) => {
-      const filePath = nodePath.resolve(watchPath, file);
-      require(filePath)(req, res, next);
-    });
+  requires.forEach((file) => {
+    const filePath = nodePath.resolve(watchPath, file);
 
-    next();
+    expressApp.use((req, res, next) => {
+      require(filePath)(req, res, next);
+      next();
+    });
   });
 
   watcher.on('ready', () => {
